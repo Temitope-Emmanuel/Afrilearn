@@ -1,68 +1,97 @@
-import React from "react"
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
-import IconButton from '@material-ui/core/IconButton'
-import HomeIcon from '@material-ui/icons/Home'
-import Button from '@material-ui/core/Button'
-import {isAuthenticated,clearJWT} from './../auth/auth-helper'
-import {Link, withRouter} from 'react-router-dom'
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles} from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
+const drawerWidth = 240;
 
-const isActive = (history,path) => {
-    if(history.location.pathname == path)
-       return {color:'#ff4081'}
-    else
-       return {color:"#ffffff"}
+const useStyles = makeStyles((theme) => ({
+    appBar: {
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+      }),
+      backgroundColor:"transparent",
+      color:"green",
+      zIndex:5
+    },
+    appBarShift: {
+      width: `calc(100% - ${drawerWidth}px)`,
+      marginLeft: drawerWidth,
+      transition: theme.transitions.create(['margin', 'width'], {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    hide: {
+      display: 'none',
+    },
+    titleContainer:{
+      display:"flex",
+      flexDirection:"column",
+      alignItems:"start",
+      justifyContent:"start",
+      "& h6":{
+        letterSpacing:".1em",
+        fontSize:"2.3em",
+        margin:"0",
+        "& > span":{
+          fontWeight:"600"
+        },
+      },
+      "& > span":{
+        fontSize:".7em",
+        textAlign:"right",
+        // display:"none",
+        letterSpacing:".01em"
+      }
+    }
+  }));
+  
+
+const Menu = ({open,handleToggle}) => {
+    const classes = useStyles()
+    
+
+    return(
+        <AppBar
+        position="fixed"
+        elevation={0}
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleToggle}
+            edge="start"
+            className={clsx(classes.menuButton, open && classes.hide)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Box className={classes.titleContainer}>
+          <Typography variant="h6" noWrap>
+              Afri<span>learn</span>
+          </Typography>
+          <Typography variant="span" noWrap>
+              For here, For Africa,For progress
+          </Typography>
+          </Box>
+        </Toolbar>
+      </AppBar>
+      
+    )
 }
 
-const Menu = ({history}) => (
-    <AppBar position="static" >
-        <Toolbar>
-            <Typography variant="h6" color="inherit" >
-                MERN Skeleton
-            </Typography>
-            <Link to="/" >
-                <IconButton aria-label="Home" 
-                 style={isActive(history,"/")} >
-                     <HomeIcon/>
-                </IconButton>
-            </Link>
-            <Link to="/users" >
-                <Button style={isActive(history,"/users")} >
-                    Users
-                </Button>
-            </Link>
-            {(!isAuthenticated()) && (
-                <>
-                    <Link to="/signup" >
-                        <Button style={isActive(history,"/signup")} >
-                            Sign Up
-                        </Button>
-                    </Link>
-                    <Link to="/signin" >
-                        <Button style={isActive(history,"/signin")} >
-                            Sign in
-                        </Button>
-                    </Link>
-                </>
-            )}
-            {
-                isAuthenticated() && (
-                <>
-                    <Link to={"/user/" + isAuthenticated().user._id}>
-                        <Button style={isActive(history, "/user/"+isAuthenticated().user._id)}>
-                            My Profile
-                        </Button>
-                    </Link>
-                    <Button color="inherit"
-                        onClick={() => {clearJWT(() => history.push('/')) }}>
-                        Sign out
-                    </Button>
-                </>)
-            }
-        </Toolbar>
-    </AppBar>
-)
 
-export default withRouter(Menu)
+export default Menu
