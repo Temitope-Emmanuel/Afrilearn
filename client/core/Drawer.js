@@ -10,6 +10,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import InfoIcon from '@material-ui/icons/Info';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import ForumIcon from '@material-ui/icons/Forum';
+import ContactSupportIcon from '@material-ui/icons/ContactSupport';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import {green} from "@material-ui/core/colors"
 
 const drawerWidth = 240;
 
@@ -20,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundImage:"linear-gradient(#f96332 0%, #000 80%)",
+    backgroundImage:`linear-gradient(${green["A400"]} 0%, #000 80%)`,
     color:"whitesmoke"
   },
   drawerHeader: {
@@ -33,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DrawerComponent = ({open,handleToggle}) =>  {
+const DrawerComponent = ({open,handleToggle,defaultIcons}) =>  {
   const classes = useStyles();
   const theme = useTheme();
   
@@ -53,15 +60,27 @@ const DrawerComponent = ({open,handleToggle}) =>  {
           </IconButton>
         </div>
         <List>
-        {['ABOUT','FAQ',"BLOG","FORUM","CONTACT","LOGIN","REGISTER"].map((text,idx) => (
-            <ListItem button key={text}>
-            <ListItemIcon>{idx % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
+        {defaultIcons.map(({name,icon},idx) => (
+            <ListItem button key={idx}>
+            <ListItemIcon>{icon}</ListItemIcon>
+            <ListItemText primary={name} />
           </ListItem>
         ))}
         </List>
       </Drawer>
   );
+}
+
+DrawerComponent.defaultProps = {
+  defaultIcons:[
+  {name:'ABOUT',icon:<InfoIcon/>},
+  {name:'FAQ',icon:<LiveHelpIcon/>},
+  {name:"BLOG",icon:<ForumIcon/>},
+  {name:"FORUM",icon:<ContactSupportIcon/>},
+  {name:"CONTACT",icon:<VpnKeyIcon/>},
+  {name:"LOGIN",icon:<LockOpenIcon/>},
+  {name:"REGISTER",icon:<VpnKeyIcon/>}
+  ]
 }
 
 
