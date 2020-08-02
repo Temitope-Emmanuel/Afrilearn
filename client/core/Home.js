@@ -8,6 +8,7 @@ import Menu from "./Menu"
 import backgroundImage from  "../assets/images/backgroundImg.jpg"
 import Typed from "react-typed"
 import TextField from "./TextField"
+import Details from "./details"
 
 const drawerWidth = 240;
 
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    position:"relative",
     padding: theme.spacing(1,0),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -43,15 +45,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
   },
   overlayContainer:{
+      position:"absolute",
       backgroundImage:`url(${backgroundImage})`,
       backgroundRepeat:"no-repeat",
       backgroundPosition:"center",
+      // backgroundAttachment:'fixed',
       backgroundSize:"cover",
       width:"100%",
       height:"60vh",
-      position:"absolute",
       top:"0",
-      left:"0"
+      left:"0",
+      marginBottom:"15em"
   },
   overlay:{
       height:"100%",
@@ -61,26 +65,26 @@ const useStyles = makeStyles((theme) => ({
   },
   bodyContainer:{
     position:"absolute",
-    top:"50%",
-    right:"50%",
     height:"100%",
-    width:"80%",
-    transform:"translateX(50%)"
-  },
-  textContainer:{
-    position:"absolute",
-    top:"-20%",
-    transform:"translateX(10%)",
-    color:"white",
+    width:"100%",
+    color:"black",
+    top:0,
+    display:"flex",
+    flexDirection:"column",
+    justifyContent:"center",
+    alignItems:"center",
+    textAlign:"center",
     "& span":{
     fontSize:"3.5ch",
-    width:"100%",
-    wrap:"noWrap"
+    wrap:"noWrap",
     }
+  },
+  detailContainer:{
   }
 }));
 
 export default function PersistentDrawerLeft() {
+ 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -93,7 +97,7 @@ export default function PersistentDrawerLeft() {
       <CssBaseline />
       <Menu open={open} handleToggle={handleToggle} />
       <Drawer open={open} handleToggle={handleToggle} />
-      <main
+      <div
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}
@@ -102,7 +106,6 @@ export default function PersistentDrawerLeft() {
         <Box className={classes.overlayContainer}>
             <Box className={classes.overlay} />
             <Box className={classes.bodyContainer}>
-              <Box className={classes.textContainer}>
                 <Typed
                 strings={[
                     'What would you love to learn?',
@@ -110,14 +113,16 @@ export default function PersistentDrawerLeft() {
                     'What do you Aspire to become?',
                     'All begins with Knowledge',
                     ]}
-                    typeSpeed={30}
+                    typeSpeed={0}
                     backSpeed={10}
                     loop />
-                    </Box>
                     <TextField/>
             </Box>        
         </Box>
-      </main>
+        <Box className={classes.detailContainer}>
+          <Details/>
+        </Box>
+      </div>
     </div>
   );
 }

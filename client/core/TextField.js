@@ -62,7 +62,7 @@ export default function InputAdornments() {
             value={values.amount}
             onChange={handleChange('amount')}
             endAdornment={<InputAdornment position="end">
-              <SearchIcon/>
+              <SearchIcon style={{cursor:"pointer"}} />
             </InputAdornment>}
           />
         </FormControl>

@@ -4,6 +4,8 @@ import {BrowserRouter as Router} from "react-router-dom"
 import {ThemeProvider} from "@material-ui/core"
 import {hot} from "react-hot-loader"
 import theme from "./theme"
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 
 const App = () => {
@@ -14,6 +16,13 @@ const App = () => {
             jssStyles.parentNode.removeChild(jssStyles)
         }
     })
+    if(typeof window !== "undefined"){
+        AOS.init({
+          easing: "ease-in",
+          duration: 1800
+        });
+      }
+    
     return(
         <Router>
             <ThemeProvider theme={theme} >
