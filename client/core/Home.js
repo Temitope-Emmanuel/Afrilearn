@@ -11,7 +11,7 @@ import TextField from "./TextField"
 import Questions from "./Questions"
 import {ExamImage1,ExamImage2,ExamImage3,ExamImage4,Avatar,IcanImage,UImage} from "../assets"
 import MainView from "./mainView"
-import Footer from "./footer"
+import Footer from "./Footer"
 
 
 const drawerWidth = 240;
