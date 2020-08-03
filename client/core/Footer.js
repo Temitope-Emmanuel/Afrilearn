@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Box from "@material-ui/core/Box"
-import ToolTip from "@material-ui/core/ToolTip"
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from "@material-ui/core/Typography"
 import Zoom from "@material-ui/core/Zoom"
 import FacebookIcon from "@material-ui/icons/Facebook"
