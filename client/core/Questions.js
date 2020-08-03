@@ -20,15 +20,33 @@ const useStyles = makeStyles(theme => ({
     width: '90%',
     minHeight: 200,
     borderRadius:"2.5em",
+    border: '1px solid #cecece',
     overflow:"hidden",
-    backgroundColor:"black"
+    [theme.breakpoints.down("sm")]:{
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"center",
+      alignItems:"center",
+      // backgroundColor:"purple",
+      border:"none"
+    }
   },
   tile: {
     textAlign: 'center',
-    border: '1px solid #cecece',
+    borderRight: '1px solid #cecece',
+    borderBottom: '1px solid #cecece',
     backgroundColor:'white',
     "& a":{
       textDecoration:"none"
+    },
+    [theme.breakpoints.down("sm")]:{
+      border: '1px solid #cecece',
+      borderRadius:".5em",
+      margin:theme.spacing(),
+      padding:"3em",
+      "& a":{
+        fontSize:"1.1em"
+      }
     }
   },
   image: {
@@ -66,17 +84,25 @@ const useStyles = makeStyles(theme => ({
       justifyContent:"center",
       alignItems:"center",
       margin:"2em 0"
+    },
+    [theme.breakpoints.down("sm")]:{
+      flexDirection:"column"
     }
   }
 }))
 
 const Exams = (props) => {
     const classes = useStyles()
+    const [col,setCol] = React.useState(4)
+
+    // React.useEffect(() => {
+    //   window.addEventListener('')
+    // },[])
     return(
       <>
       <Typography variant="h4">Free Past Questions</Typography>
         <GridList cellHeight={220}
-         className={classes.gridList} cols={4} >
+         className={classes.gridList}>
              {props.questions.map(({image,name},i) => (
              <GridListTile className={classes.tile}
               key={i} style={{padding:0}}>

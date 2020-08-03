@@ -9,9 +9,9 @@ mongoose.connect(config.mongoUri,{
     useNewUrlParser:true    
 })
 
-mongoose.connection.on("error",() => {
-    throw new Error(`unable to connect to database: ${config.mongoUri}`)
-})
+// mongoose.connection.on("error",() => {
+//     throw new Error(`unable to connect to database: ${config.mongoUri}`)
+// })
 
 app.listen(config.PORT,err =>{
     if(err){

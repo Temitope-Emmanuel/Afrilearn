@@ -1,6 +1,7 @@
 export {default as ExamImage1} from "./images/gce.png"
 export {default as ExamImage2} from "./images/jamb.png"
 export {default as ExamImage3} from "./images/neco.png"
+export {default as backgroundImage} from "./images/backgroundImg.jpg"
 export {default as ExamImage4} from "./images/waec.png"
 export {default as Avatar} from "./images/avatar.jpg"
 export {default as IcanImage} from "./images/ICAN.png"

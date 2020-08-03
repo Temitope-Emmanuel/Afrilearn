@@ -10,29 +10,33 @@ import Typed from "react-typed"
 import TextField from "./TextField"
 import Questions from "./Questions"
 import {ExamImage1,ExamImage2,ExamImage3,ExamImage4,Avatar,IcanImage,UImage} from "../assets"
+import MainView from "./mainView"
 import Footer from "./footer"
+
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'flex'
+    // overflowY:"scroll"
   },
   drawerPaper: {
     width: drawerWidth,
   },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
+  // drawerHeader: {
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   // padding: theme.spacing(0, 1),
+  //   // necessary for content to be below app bar
+  //   ...theme.mixins.toolbar,
+  //   justifyContent: 'flex-end',
+  // },
   content: {
     flexGrow: 1,
-    position:"relative",
-    padding: theme.spacing(1,0),
+    height:"100%",
+    width:"100%",
+    // padding: theme.spacing(1,0),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -46,27 +50,8 @@ const useStyles = makeStyles((theme) => ({
     }),
     marginLeft: 0,
   },
-  overlayContainer:{
-      position:"absolute",
-      backgroundImage:`url(${backgroundImage})`,
-      backgroundRepeat:"no-repeat",
-      backgroundPosition:"center",
-      // backgroundAttachment:'fixed',
-      backgroundSize:"cover",
-      width:"100%",
-      minHeight:"60vh",
-      top:"0",
-      left:"0",
-      marginBottom:"15em"
-  },
-  overlay:{
-      height:"100%",
-      width:"100%",
-      backgroundColor:'rgba(0,0,0,.3)',
-      zIndex:-1
-  },
   bodyContainer:{
-    position:"absolute",
+    // position:"absolute",
     height:"100%",
     width:"100%",
     color:"black",
@@ -82,8 +67,6 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   detailContainer:{
-    // position:"relative",
-    marginTop:"70vh",
     display:"flex",
     justifyContent:"center",
     alignItems:"center",
@@ -114,24 +97,8 @@ const Home = (props) =>  {
           [classes.contentShift]: open,
         })}
       >
-        <div className={classes.drawerHeader} />
-        <Box className={classes.overlayContainer}>
-            {/* // <Box className={classes.overlay} />
-            // <Box className={classes.bodyContainer}>
-            //     <Typed
-            //     strings={[
-            //         'What would you love to learn?',
-            //         'What would you love to Know?',
-            //         'What do you Aspire to become?',
-            //         'All begins with Knowledge',
-            //         ]}
-            //         typeSpeed={0}
-            //         backSpeed={10}
-            //         loop />
-            //         <TextField/>
-            // </Box>         */}
-        </Box>
-        <Box className={classes.detailContainer}>
+        <MainView/> 
+      <Box className={classes.detailContainer}>
           <Questions questions={props.questionDetails} exams={props.examDetails}   />
         </Box>
         <Footer/>

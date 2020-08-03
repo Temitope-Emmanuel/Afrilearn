@@ -16,9 +16,10 @@ import SearchIcon from '@material-ui/icons/Search'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    width:'100%'
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    // width:'100%'
+    marginTop:"2em"
   },
   margin: {
     display: 'flex',
